@@ -45,12 +45,35 @@ Los tres casos fueron diseñados, ejecutados y diagnosticados. Las ramas del flu
 
 ## Desafíos conceptuales
 
-Las respuestas se completarán durante la fase de cierre, después de ejecutar y diagnosticar los casos de prueba.
-
 ### Desafío lógico 1
 
-Pendiente.
+**¿Es posible que un defecto exista durante años sin causar un fallo?**
+
+Sí. Un defecto puede permanecer dentro del código durante mucho tiempo sin producir un fallo observable si nunca se ejecuta la ruta que lo contiene o si no se presentan las entradas, condiciones del entorno o estados necesarios para activarlo. El defecto pertenece al producto, mientras que el fallo es la manifestación externa que aparece al ejecutar el software bajo determinadas condiciones.
+
+En este programa, por ejemplo, la división de la línea 12 contiene un defecto porque no valida que la cantidad de socios sea mayor que cero. Mientras los usuarios introduzcan valores positivos, esa condición no se activa y el programa puede parecer correcto. Cuando se introduce `0`, el defecto se manifiesta como un `ZeroDivisionError`. Por eso las pruebas pueden demostrar la presencia de defectos, pero no garantizar que no existan otros.
 
 ### Desafío lógico 2
 
-Pendiente.
+**¿Qué principio se viola si el programa funciona perfectamente, pero resuelve una necesidad distinta de la solicitada?**
+
+Se viola el séptimo principio de testing de ISTQB, conocido como la **falacia de ausencia de errores**. Corregir todos los defectos y conseguir que las pruebas técnicas pasen no aporta valor si el sistema construido no satisface la necesidad real del cliente.
+
+En ese escenario, el equipo habría realizado correctamente la **verificación**, porque el software fue construido de acuerdo con su especificación técnica, pero habría fallado en la **validación**, porque se construyó un sistema de presupuestos cuando el cliente necesitaba uno de nóminas. Un producto técnicamente correcto también debe ser el producto adecuado para el usuario.
+
+## Auditoría final
+
+| Criterio solicitado | Resultado | Evidencia |
+|---|---|---|
+| Repositorio estrictamente público | Cumple | Visibilidad pública confirmada en GitHub |
+| Código base conservado como fue entregado | Cumple | `presupuesto_analisis.py` mantiene el SHA `5b24e5c88d75187e3992f15b7e37c6db8274b756` |
+| Archivo `casos_prueba.md` presente | Cumple | Disponible en la rama `main` |
+| Mapa conceptual incluido | Cumple | Diagrama Mermaid al inicio de `casos_prueba.md` |
+| Tres casos ejecutados con resultado y estado | Cumple | CP-01, CP-02 y CP-03 tienen resultado real y estado `Failed` |
+| Defectos y líneas responsables documentados | Cumple | Reportes individuales incluidos después de la tabla |
+| Respuestas a los dos desafíos en el README | Cumple | Sección de desafíos conceptuales completada |
+| Participación de todos los integrantes | Requiere confirmación humana | Debe confirmarlo el equipo antes de entregar |
+
+### Resultado de la auditoría
+
+La entrega cumple todos los criterios técnicos verificables. Antes de enviar el enlace al profesor, el equipo debe confirmar únicamente que todos sus integrantes participaron y observaron las actividades.
