@@ -29,9 +29,19 @@ python presupuesto_analisis.py
 5. Inspeccionar el código para localizar los defectos causantes.
 6. Completar los desafíos conceptuales y auditar la entrega.
 
+## Flujo de ramas
+
+El ciclo de pruebas está conservado en tres ramas progresivas:
+
+1. [`plan-pruebas`](../../tree/plan-pruebas): diseño de caja negra con resultados y estados todavía vacíos.
+2. [`ejecucion-pruebas`](../../tree/ejecucion-pruebas): ejecución dinámica, resultados reales y veredictos, sin inspección interna.
+3. [`diagnostico-defectos`](../../tree/diagnostico-defectos): análisis de caja blanca y localización de las causas raíz.
+
+La rama `main` contiene la versión consolidada para la entrega. El código bajo prueba se mantiene sin correcciones en todas las etapas.
+
 ## Estado del proyecto
 
-Entorno inicial y plan de pruebas preparados. La ejecución dinámica y el diagnóstico permanecen pendientes para conservar el orden metodológico solicitado.
+Los tres casos fueron diseñados, ejecutados y diagnosticados. Las ramas del flujo conservan cada estado del proceso y `main` presenta la documentación consolidada.
 
 ## Desafíos conceptuales
 
