@@ -49,9 +49,28 @@ Los resultados esperados fueron definidos antes de ejecutar el programa. Los cas
 - **Método:** una ejecución independiente por caso, introduciendo los tres valores en el orden presupuesto, socios y meses.
 - **Integridad:** el archivo bajo prueba no fue modificado durante ni después de las ejecuciones.
 
-## Diagnóstico pendiente
+## Reportes de fallos y defectos
 
-En esta rama ya se registraron los fallos y veredictos. La inspección interna del código y la identificación de sus defectos se realizarán en la siguiente etapa del ciclo.
+### CP-01 - Cálculo incorrecto de intereses
+
+- **Fallo observado:** con entradas válidas, el programa muestra `$180.00` de intereses en lugar de `$60.00`. Como consecuencia, también son incorrectos el total y la cuota.
+- **Defecto localizado:** línea 9 de `presupuesto_analisis.py`.
+- **Causa raíz:** la expresión utiliza `meses ** 2`, elevando los meses al cuadrado. Para un interés mensual simple, el presupuesto y la tasa deben multiplicarse por la cantidad de meses, no por su cuadrado.
+- **Veredicto:** **Failed**.
+
+### CP-02 - División entre cero no controlada
+
+- **Fallo observado:** el programa se cierra inesperadamente y muestra `ZeroDivisionError: float division by zero`.
+- **Defecto localizado:** línea 12 de `presupuesto_analisis.py`.
+- **Causa raíz:** se ejecuta `total / socios` sin validar previamente que `socios` sea mayor que cero.
+- **Veredicto:** **Failed**.
+
+### CP-03 - Meses negativos aceptados
+
+- **Fallo observado:** el programa acepta una duración de `-1` meses y presenta resultados como si la entrada fuera válida.
+- **Defecto localizado:** defecto por omisión después de la línea 5; su efecto se manifiesta en el cálculo de la línea 9.
+- **Causa raíz:** después de capturar `meses`, no existe una validación que rechace valores negativos. Además, el cuadrado aplicado en la línea 9 convierte `-1` en `1` y oculta el signo inválido.
+- **Veredicto:** **Failed**.
 
 ## Resumen
 
