@@ -41,7 +41,10 @@ La rama `main` contiene la versión consolidada para la entrega. El código bajo
 
 ## Estado del proyecto
 
-Los tres casos fueron diseñados, ejecutados y diagnosticados. Las ramas del flujo conservan cada estado del proceso y `main` presenta la documentación consolidada.
+**Estado final: FINALIZADO**  
+**Fecha de cierre técnico: 11 de septiembre de 2026**
+
+Los tres casos fueron diseñados, ejecutados y diagnosticados. Las ramas del flujo conservan cada estado del proceso y `main` presenta la documentación consolidada. El sistema bajo prueba permanece sin correcciones, tal como exige la actividad.
 
 ## Desafíos conceptuales
 
