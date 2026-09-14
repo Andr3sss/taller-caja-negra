@@ -94,13 +94,13 @@ La partición de equivalencia es una técnica de caja negra: organiza los posibl
 
 ### 3.1 Relación de equivalencia
 
-Sea (D) el dominio de datos de entrada de un elemento del sistema. Una relación (\sim) sobre (D) es una relación de equivalencia cuando cumple estas tres propiedades:
+Sea $D$ el dominio de datos de entrada de un elemento del sistema. Una relación (\sim) sobre $D$ es una relación de equivalencia cuando cumple estas tres propiedades:
 
 1. **Reflexividad:** para todo (x \in D), se cumple (x \sim x).
 2. **Simetría:** para cualesquiera (x,y \in D), si (x \sim y), entonces (y \sim x).
 3. **Transitividad:** para cualesquiera (x,y,z \in D), si (x \sim y) y (y \sim z), entonces (x \sim z).
 
-A partir de esa relación, la clase de equivalencia de un valor (x) se define como:
+A partir de esa relación, la clase de equivalencia de un valor $x$ se define como:
 
 $$
 [x] = \{y \in D \mid y \sim x\}
