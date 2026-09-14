@@ -1,10 +1,25 @@
 # Taller de pruebas de caja negra
 
+[![CI - PyTest y cobertura](https://github.com/Andr3sss/taller-caja-negra/actions/workflows/ci_pipeline.yml/badge.svg)](https://github.com/Andr3sss/taller-caja-negra/actions/workflows/ci_pipeline.yml)
+
 Repositorio académico para aplicar un proceso básico de aseguramiento y control de calidad sobre un sistema de análisis de presupuesto.
 
 ## Objetivo
 
 Diseñar casos de prueba mediante técnicas de caja negra, ejecutarlos, comparar los resultados esperados con los reales y, únicamente después de observar los fallos, inspeccionar el código para localizar los defectos que los originan.
+
+## Continuación - Semana 2
+
+La segunda etapa incorpora automatización de pruebas y CI/CD sin eliminar la evidencia del taller inicial.
+
+- [Módulo y documentación de semana 2](semana-2/)
+- [Pruebas automatizadas](semana-2/tests/test_presupuesto.py)
+- [Mapeo STLC y criterios de entrada/salida](semana-2/STLC.md)
+- [Análisis metacognitivo](semana-2/ANALISIS.md)
+- [Guía de exposición por roles](semana-2/GUIA_EXPOSICION.md)
+- [Pipeline de GitHub Actions](.github/workflows/ci_pipeline.yml)
+
+El pipeline ejecuta PyTest en Python 3.12 y exige un mínimo de 90 % de cobertura. La rama `sabotaje-ci` se reserva para demostrar una corrida roja controlada, mientras `main` conserva la entrega funcional.
 
 ## Estructura
 
