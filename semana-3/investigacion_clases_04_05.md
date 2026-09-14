@@ -2,8 +2,6 @@
 
 Este documento reúne el trabajo de investigación correspondiente a las clases 04 y 05. El contenido está organizado en cinco actividades que conectan los niveles de prueba, las estrategias de integración, la partición de equivalencia y su aplicación en un caso bancario.
 
-> **Estado del documento:** estructura inicial preparada. Cada sección se desarrollará y revisará durante las siguientes fases de trabajo.
-
 ## 1. Taxonomía de niveles de prueba
 
 Un nivel de prueba agrupa actividades que se organizan y administran en conjunto sobre un objeto de prueba concreto. Ese objeto cambia a medida que avanza el desarrollo: primero se revisan piezas aisladas, después sus conexiones y, por último, el producto completo frente a sus especificaciones y a las necesidades de quienes lo van a utilizar [1], [2].
