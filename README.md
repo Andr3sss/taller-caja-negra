@@ -18,6 +18,7 @@ La segunda etapa incorpora automatización de pruebas y CI/CD sin eliminar la ev
 - [Análisis metacognitivo](semana-2/ANALISIS.md)
 - [Guía de exposición por roles](semana-2/GUIA_EXPOSICION.md)
 - [Pipeline de GitHub Actions](.github/workflows/ci_pipeline.yml)
+- [Evidencia de corridas verde y roja](semana-2/EVIDENCIA_CI.md)
 
 El pipeline ejecuta PyTest en Python 3.12 y exige un mínimo de 90 % de cobertura. La rama `sabotaje-ci` se reserva para demostrar una corrida roja controlada, mientras `main` conserva la entrega funcional.
 
