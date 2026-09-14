@@ -120,7 +120,7 @@ Esta formulación también aclara un límite práctico: la equivalencia se estab
 
 Una **clase válida** contiene valores que la especificación reconoce y que el sistema debe procesar. Una **clase inválida** contiene valores que el sistema debe rechazar, ignorar o tratar como no definidos, de acuerdo con esa misma especificación [2].
 
-Por ejemplo, si un campo acepta edades de 18 a 75 años, una partición válida puede ser (18 \leq edad \leq 75). Las particiones inválidas serían (edad < 18) y (edad > 75). El valor elegido para una prueba debe representar la regla de su clase: 30 puede representar la clase válida, 16 la inválida inferior y 80 la inválida superior.
+Por ejemplo, si un campo acepta edades de 18 a 75 años, una partición válida puede ser (18 \leq edad \leq 75). Las particiones inválidas serían $edad < 18$ y $edad > 75$. El valor elegido para una prueba debe representar la regla de su clase: 30 puede representar la clase válida, 16 la inválida inferior y 80 la inválida superior.
 
 Las particiones deben cumplir dos condiciones básicas:
 
@@ -135,10 +135,10 @@ El *failure masking* ocurre cuando un defecto impide observar otro defecto que t
 
 La demostración puede verse paso a paso:
 
-1. Supongamos que un formulario recibe dos entradas, (A) y (B), y que ambas tienen una partición inválida.
-2. El sistema valida primero (A). Si detecta el error, detiene el flujo, muestra un mensaje y no procesa (B).
-3. Si además existe un defecto en la validación de (B), el caso termina antes de alcanzar esa lógica. El resultado solo aporta evidencia sobre (A).
-4. Si el equipo registra el caso como una prueba conjunta de (A) y (B), podría concluir erróneamente que ambas particiones fueron evaluadas. En realidad, el comportamiento de (B) quedó oculto.
+1. Supongamos que un formulario recibe dos entradas, $A$ y $B$, y que ambas tienen una partición inválida.
+2. El sistema valida primero $A$. Si detecta el error, detiene el flujo, muestra un mensaje y no procesa $B$.
+3. Si además existe un defecto en la validación de $B$, el caso termina antes de alcanzar esa lógica. El resultado solo aporta evidencia sobre $A$.
+4. Si el equipo registra el caso como una prueba conjunta de $A$ y $B$, podría concluir erróneamente que ambas particiones fueron evaluadas. En realidad, el comportamiento de $B$ quedó oculto.
 
 La conclusión es directa: para comprobar cada partición inválida de forma aislada, se diseña un caso con esa partición como única entrada inválida y se mantienen valores válidos en el resto. Después se repite el procedimiento para la siguiente partición. Esto hace que el resultado sea atribuible y evita confundir una falla primaria con una falla que nunca llegó a ejecutarse.
 
