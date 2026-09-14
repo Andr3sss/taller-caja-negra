@@ -9,7 +9,7 @@ def test_calculo_con_datos_validos():
     resultado = calcular_presupuesto(1000, 4, 3)
 
     assert resultado["presupuesto"] == pytest.approx(1000.00)
-    assert resultado["intereses"] == pytest.approx(60.00)
+    assert resultado["intereses"] == pytest.approx(999.00)  # Sabotaje intencional
     assert resultado["total"] == pytest.approx(1060.00)
     assert resultado["cuota_por_socio"] == pytest.approx(265.00)
 
