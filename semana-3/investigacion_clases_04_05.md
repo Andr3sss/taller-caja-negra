@@ -90,21 +90,61 @@ Top-Down y Bottom-Up no indican que una estrategia sea siempre mejor que la otra
 
 ## 3. Matemáticas de la partición de equivalencia
 
+La partición de equivalencia es una técnica de caja negra: organiza los posibles datos de entrada en grupos cuyos elementos deberían recibir un tratamiento equivalente. Así se reduce el número de pruebas sin elegir valores al azar. La idea no es probar menos por descuido, sino escoger representantes de clases que tengan una razón común [2], [5].
+
 ### 3.1 Relación de equivalencia
 
-En este apartado se presentará la definición matemática de una relación de equivalencia aplicada al dominio de datos de entrada, según Jorgensen. La explicación considerará sus propiedades reflexiva, simétrica y transitiva.
+Sea (D) el dominio de datos de entrada de un elemento del sistema. Una relación (\sim) sobre (D) es una relación de equivalencia cuando cumple estas tres propiedades:
+
+1. **Reflexividad:** para todo (x \in D), se cumple (x \sim x).
+2. **Simetría:** para cualesquiera (x,y \in D), si (x \sim y), entonces (y \sim x).
+3. **Transitividad:** para cualesquiera (x,y,z \in D), si (x \sim y) y (y \sim z), entonces (x \sim z).
+
+A partir de esa relación, la clase de equivalencia de un valor (x) se define como:
+
+$$
+[x] = \{y \in D \mid y \sim x\}
+$$
+
+La colección de todas las clases forma una partición del dominio:
+
+$$
+D/\sim = \{[x] \mid x \in D\}
+$$
+
+Eso significa que las clases no se superponen y que, juntas, cubren el dominio completo. En pruebas de software, dos valores pertenecen a la misma clase cuando se espera que el objeto de prueba los procese de la misma manera. Por eso, si un valor representativo descubre un defecto que depende de esa clase, se espera que otros valores de la misma clase puedan revelar el mismo problema [2], [5].
+
+Esta formulación también aclara un límite práctico: la equivalencia se establece según el comportamiento especificado del sistema, no porque dos valores “se parezcan” desde el punto de vista del tester. Si la especificación trata dos rangos de forma distinta, deben quedar en particiones diferentes.
 
 ### 3.2 Clases de equivalencia válidas e inválidas
 
-Aquí se explicará la diferencia fundamental entre las clases que representan entradas aceptadas por la especificación y aquellas que representan entradas rechazadas.
+Una **clase válida** contiene valores que la especificación reconoce y que el sistema debe procesar. Una **clase inválida** contiene valores que el sistema debe rechazar, ignorar o tratar como no definidos, de acuerdo con esa misma especificación [2].
+
+Por ejemplo, si un campo acepta edades de 18 a 75 años, una partición válida puede ser (18 \leq edad \leq 75). Las particiones inválidas serían (edad < 18) y (edad > 75). El valor elegido para una prueba debe representar la regla de su clase: 30 puede representar la clase válida, 16 la inválida inferior y 80 la inválida superior.
+
+Las particiones deben cumplir dos condiciones básicas:
+
+- No deben superponerse. Un valor no puede pertenecer a dos clases distintas al mismo tiempo.
+- No deben dejar valores fuera. El dominio considerado debe quedar cubierto, incluyendo las entradas inválidas relevantes.
+
+Para obtener el 100% de cobertura de esta técnica, se debe ejecutar al menos un caso con un representante de cada partición identificada, tanto válida como inválida [2].
 
 ### 3.3 Failure masking o enmascaramiento de fallos
 
-Esta sección desarrollará una demostración teórica del *failure masking* y responderá por qué no se deben evaluar varias entradas inválidas dentro de un mismo caso de prueba.
+El *failure masking* ocurre cuando un defecto impide observar otro defecto que también estaba presente. Por eso, cuando se prueban particiones inválidas, cada caso debe activar una sola entrada inválida y mantener válidas las demás condiciones. ISTQB explica el mismo principio al recomendar probar una transición inválida por caso para evitar que un defecto oculte la detección de otro [2].
+
+La demostración puede verse paso a paso:
+
+1. Supongamos que un formulario recibe dos entradas, (A) y (B), y que ambas tienen una partición inválida.
+2. El sistema valida primero (A). Si detecta el error, detiene el flujo, muestra un mensaje y no procesa (B).
+3. Si además existe un defecto en la validación de (B), el caso termina antes de alcanzar esa lógica. El resultado solo aporta evidencia sobre (A).
+4. Si el equipo registra el caso como una prueba conjunta de (A) y (B), podría concluir erróneamente que ambas particiones fueron evaluadas. En realidad, el comportamiento de (B) quedó oculto.
+
+La conclusión es directa: para comprobar cada partición inválida de forma aislada, se diseña un caso con esa partición como única entrada inválida y se mantienen valores válidos en el resto. Después se repite el procedimiento para la siguiente partición. Esto hace que el resultado sea atribuible y evita confundir una falla primaria con una falla que nunca llegó a ejecutarse.
 
 ### 3.4 Cobertura de particiones de equivalencia
 
-La cobertura se calculará con la fórmula solicitada:
+En esta técnica, una partición cuenta como cubierta cuando al menos un caso de prueba utiliza un valor perteneciente a ella. La cobertura se calcula dividiendo las particiones cubiertas entre todas las particiones identificadas y multiplicando el resultado por 100:
 
 $$
 \text{Cobertura} =
@@ -112,6 +152,8 @@ $$
 {\text{Número Total de Particiones de Equivalencia Identificadas}}
 \times 100
 $$
+
+Por ejemplo, si se identifican 10 particiones y los casos ejercitan las 10, la cobertura es (100\%\). Si solo se cubren 8, la cobertura es (80\%\). Este porcentaje indica qué clases fueron ejercitadas; no demuestra por sí solo que el sistema esté libre de defectos.
 
 ## 4. Ingeniería de especificaciones: caso bancario
 
@@ -170,3 +212,5 @@ Las fuentes académicas se incorporarán en formato IEEE y se relacionarán con 
 [3] G. J. Myers, C. Sandler, and T. Badgett, *The Art of Software Testing*, 3rd ed. Hoboken, NJ, USA: John Wiley & Sons, 2011.
 
 [4] R. S. Pressman and B. R. Maxim, *Software Engineering: A Practitioner's Approach*, 8th ed. New York, NY, USA: McGraw-Hill Education, 2014.
+
+[5] P. C. Jorgensen, *Software Testing: A Craftsman’s Approach*, 4th ed. Boca Raton, FL, USA: CRC Press, 2014.
