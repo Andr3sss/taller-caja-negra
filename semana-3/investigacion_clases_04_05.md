@@ -50,25 +50,43 @@ Dicho de una forma directa: la primera prueba cruza fronteras **internas entre c
 
 ## 2. Estrategias de integración y análisis de verificación y validación
 
+La integración permite comprobar algo que una prueba aislada no puede mostrar: qué ocurre cuando las partes empiezan a depender unas de otras. Myers distingue dos caminos generales. El primero reúne todos los componentes de una sola vez; el segundo construye el sistema mediante incrementos que se prueban a medida que se incorporan [3]. Pressman también favorece la integración incremental porque permite trabajar con grupos controlados de componentes y revisar sus interfaces paso a paso [4].
+
 ### 2.1 Riesgos del enfoque Big Bang
 
-Aquí se explicarán tres razones técnicas por las que Myers y Pressman consideran que el enfoque *Big Bang* representa una estrategia de integración riesgosa.
+En *Big Bang*, los componentes que ya fueron probados por separado se unen prácticamente al mismo tiempo y después se intenta probar el sistema integrado. Esta estrategia puede parecer rápida porque evita planificar varios incrementos, pero traslada el esfuerzo al momento más difícil: cuando muchas interfaces nuevas empiezan a fallar a la vez. Los tres riesgos técnicos principales son los siguientes [3], [4]:
 
-1. Primera razón técnica: por desarrollar.
-2. Segunda razón técnica: por desarrollar.
-3. Tercera razón técnica: por desarrollar.
+1. **El origen de un fallo queda difícil de aislar.** Si se integran muchos componentes en un solo cambio, una falla observable puede venir de cualquiera de sus interfaces, de una combinación de llamadas o de datos que atraviesan varios módulos. No existe un último incremento pequeño que sirva para acotar la búsqueda. El equipo termina revisando una zona amplia del sistema antes de encontrar la causa.
+
+2. **Los defectos de interfaz aparecen demasiado tarde.** Un componente puede superar sus pruebas unitarias y, aun así, usar un formato, una secuencia o una interpretación distinta a la de sus dependencias. Cuando estas incompatibilidades se descubren al final, la corrección suele afectar más de un módulo y obliga a repetir pruebas sobre una construcción grande. El costo de retrabajo y el riesgo para el calendario aumentan.
+
+3. **No se obtiene una base integrada y estable de forma progresiva.** La prueba completa depende de que todos los componentes necesarios estén disponibles y funcionen lo suficiente para ejecutar un recorrido. Si uno bloquea el sistema, también bloquea la observación de otros. Además, varios equipos pueden corregir partes diferentes sobre una base inestable, haciendo más difícil saber si un cambio resolvió el problema original o introdujo otro.
+
+Estas razones no significan que *Big Bang* sea imposible de usar. En una solución muy pequeña podría ser manejable. Sin embargo, a medida que crecen el número de componentes y sus dependencias, la falta de incrementos controlados vuelve el diagnóstico mucho menos preciso.
 
 ### 2.2 Verificación y validación
 
-En esta sección se explicará por qué una prueba de sistema evalúa la **verificación**, mientras que una prueba de aceptación del usuario o UAT evalúa la **validación**. La explicación incluirá un ejemplo concreto para mostrar la diferencia.
+La **verificación** responde a la pregunta: “¿el sistema cumple lo que fue especificado?”. En las pruebas de sistema, el producto completo se compara con sus requisitos funcionales y no funcionales. Se revisan funciones de extremo a extremo y características como rendimiento, seguridad o usabilidad, siempre tomando como referencia la especificación del sistema [2].
+
+La **validación** responde a otra pregunta: “¿el sistema resuelve la necesidad real para la que fue construido?”. Las pruebas de aceptación, incluida UAT, se concentran en las necesidades del negocio y en demostrar que el producto está listo para utilizarse o desplegarse. ISTQB indica que, idealmente, estas pruebas deben ser realizadas por los usuarios previstos [2].
+
+Un ejemplo permite ver la diferencia. Supongamos que la especificación de una plataforma bancaria indica que una solicitud con datos válidos debe calcular el nivel de riesgo y mostrar una decisión en menos de tres segundos. Durante la prueba de sistema, el equipo comprueba ese flujo, mide el tiempo y confirma si el resultado coincide con las reglas documentadas. Eso es verificación.
+
+Luego, un analista de crédito utiliza la plataforma en una prueba UAT. Aunque el cálculo sea correcto y tarde menos de tres segundos, descubre que la pantalla no muestra la razón del rechazo y que, sin ese dato, no puede explicar la decisión al cliente ni completar su proceso de trabajo. La especificación técnica evaluada puede haberse cumplido, pero la necesidad operativa todavía no. Esa observación pertenece a la validación.
+
+Por lo tanto, verificación y validación no compiten entre sí. Una aporta evidencia de conformidad con lo especificado; la otra confirma que el producto resulta útil y adecuado para su propósito real.
 
 ### 2.3 Comparación de estrategias incrementales
 
+A diferencia de *Big Bang*, las estrategias incrementales agregan componentes en grupos controlados. Cada incremento crea una base que puede probarse antes de incorporar el siguiente, lo que reduce el área que debe revisarse cuando aparece un fallo [3], [4].
+
 | Estrategia | Forma de integración | Ventajas | Desventajas | Elementos auxiliares |
 |---|---|---|---|---|
-| Top-Down | Por desarrollar | Por desarrollar | Por desarrollar | Uso de *stubs* |
-| Bottom-Up | Por desarrollar | Por desarrollar | Por desarrollar | Uso de *drivers* |
-| Sandwich | Por desarrollar | Por desarrollar | Por desarrollar | Uso combinado de *stubs* y *drivers* |
+| Top-Down | Empieza por los módulos superiores que controlan el sistema y avanza hacia los niveles inferiores. Puede seguir una ruta en profundidad o integrar por niveles. | Permite revisar pronto la arquitectura, la navegación y los flujos principales. También ofrece una estructura funcional temprana y facilita localizar defectos en cada incremento. | Los módulos inferiores tardan en probarse con componentes reales. Crear muchos reemplazos puede ser costoso y algunas funciones de bajo nivel quedan simuladas durante buena parte del proceso. | Usa *stubs* para representar temporalmente los componentes inferiores que todavía no están disponibles. |
+| Bottom-Up | Comienza con los componentes de nivel bajo, los reúne en grupos funcionales y avanza hacia los módulos superiores que los coordinan. | Prueba pronto servicios básicos, cálculos, acceso a datos y utilidades reales. Reduce la necesidad de *stubs* y facilita observar resultados en los niveles inferiores. | Los flujos completos y la lógica de control principal aparecen tarde. Tampoco ofrece una versión temprana del sistema visible desde su capa superior. | Usa *drivers* para invocar los grupos inferiores, enviarles datos y observar sus respuestas mientras faltan los módulos superiores. |
+| Sandwich | Integra al mismo tiempo desde la parte superior y desde la inferior hasta que ambos recorridos se encuentran en una capa intermedia. | Permite trabajar en paralelo, revisar temprano la arquitectura superior y comprobar servicios inferiores con componentes reales. Puede acortar el tiempo de integración en sistemas por capas. | Exige más coordinación y una arquitectura bien definida. La capa intermedia puede concentrar complejidad, y el equipo debe mantener reemplazos en ambos sentidos. | Combina *stubs* para las dependencias inferiores aún ausentes y *drivers* para los componentes que todavía no tienen un controlador superior. |
+
+Top-Down y Bottom-Up no indican que una estrategia sea siempre mejor que la otra. La elección depende de dónde se concentran los riesgos, qué componentes están disponibles y qué parte del sistema necesita evidencia temprana. Sandwich puede equilibrar ambos recorridos, pero esa ventaja solo aparece cuando el equipo coordina bien el punto en el que las dos líneas de integración se encuentran [4].
 
 ## 3. Matemáticas de la partición de equivalencia
 
@@ -149,4 +167,6 @@ Las fuentes académicas se incorporarán en formato IEEE y se relacionarán con 
 
 [2] International Software Testing Qualifications Board, “Certified Tester Foundation Level Syllabus,” ver. 4.0.1, Sep. 15, 2024. [Online]. Available: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf. [Accessed: Sep. 14, 2026].
 
-[3] Referencia académica sobre pruebas de software por completar.
+[3] G. J. Myers, C. Sandler, and T. Badgett, *The Art of Software Testing*, 3rd ed. Hoboken, NJ, USA: John Wiley & Sons, 2011.
+
+[4] R. S. Pressman and B. R. Maxim, *Software Engineering: A Practitioner's Approach*, 8th ed. New York, NY, USA: McGraw-Hill Education, 2014.
