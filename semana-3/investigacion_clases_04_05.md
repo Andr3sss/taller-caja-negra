@@ -94,11 +94,11 @@ La partición de equivalencia es una técnica de caja negra: organiza los posibl
 
 ### 3.1 Relación de equivalencia
 
-Sea $D$ el dominio de datos de entrada de un elemento del sistema. Una relación (\sim) sobre $D$ es una relación de equivalencia cuando cumple estas tres propiedades:
+Sea $D$ el dominio de datos de entrada de un elemento del sistema. Una relación $\sim$ sobre $D$ es una relación de equivalencia cuando cumple estas tres propiedades:
 
-1. **Reflexividad:** para todo (x \in D), se cumple (x \sim x).
-2. **Simetría:** para cualesquiera (x,y \in D), si (x \sim y), entonces (y \sim x).
-3. **Transitividad:** para cualesquiera (x,y,z \in D), si (x \sim y) y (y \sim z), entonces (x \sim z).
+1. **Reflexividad:** para todo $x \in D$, se cumple $x \sim x$.
+2. **Simetría:** para cualesquiera $x,y \in D$, si $x \sim y$, entonces $y \sim x$.
+3. **Transitividad:** para cualesquiera $x,y,z \in D$, si $x \sim y$ y $y \sim z$, entonces (x \sim z).
 
 A partir de esa relación, la clase de equivalencia de un valor $x$ se define como:
 
@@ -120,7 +120,7 @@ Esta formulación también aclara un límite práctico: la equivalencia se estab
 
 Una **clase válida** contiene valores que la especificación reconoce y que el sistema debe procesar. Una **clase inválida** contiene valores que el sistema debe rechazar, ignorar o tratar como no definidos, de acuerdo con esa misma especificación [2].
 
-Por ejemplo, si un campo acepta edades de 18 a 75 años, una partición válida puede ser (18 \leq edad \leq 75). Las particiones inválidas serían $edad < 18$ y $edad > 75$. El valor elegido para una prueba debe representar la regla de su clase: 30 puede representar la clase válida, 16 la inválida inferior y 80 la inválida superior.
+Por ejemplo, si un campo acepta edades de 18 a 75 años, una partición válida puede ser $18 \leq edad \leq 75$. Las particiones inválidas serían $edad < 18$ y $edad > 75$. El valor elegido para una prueba debe representar la regla de su clase: 30 puede representar la clase válida, 16 la inválida inferior y 80 la inválida superior.
 
 Las particiones deben cumplir dos condiciones básicas:
 
@@ -153,7 +153,7 @@ $$
 \times 100
 $$
 
-Por ejemplo, si se identifican 10 particiones y los casos ejercitan las 10, la cobertura es (100\%\). Si solo se cubren 8, la cobertura es (80\%\). Este porcentaje indica qué clases fueron ejercitadas; no demuestra por sí solo que el sistema esté libre de defectos.
+Por ejemplo, si se identifican 10 particiones y los casos ejercitan las 10, la cobertura es $100\%$. Si solo se cubren 8, la cobertura es $80\%$. Este porcentaje indica qué clases fueron ejercitadas; no demuestra por sí solo que el sistema esté libre de defectos.
 
 ## 4. Ingeniería de especificaciones: caso bancario
 
