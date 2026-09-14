@@ -13,6 +13,7 @@ CI/CD y documentación formal del STLC.
 - `ANALISIS.md`: respuestas a los tres dilemas conceptuales de la rúbrica.
 - `GUIA_EXPOSICION.md`: demostración dividida entre Tester, Developer y Git
   Lead.
+- `EVIDENCIA_CI.md`: enlaces y análisis de las corridas verde y roja.
 
 El script original de la primera actividad permanece intacto en la raíz para
 conservar la evidencia del diagnóstico anterior.
