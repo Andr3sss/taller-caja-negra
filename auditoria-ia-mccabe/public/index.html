@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102840"><meta name="description" content="Agenda académica de medicina familiar con reglas de reserva y cancelación.">
+  <title>Consulta · Agenda médica</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script><script defer src="/vendor/cdn.min.js"></script>
+</head>
+<body x-data="agenda">
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="topbar"><a class="brand" href="/" aria-label="Consulta, inicio"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5v22M5 16h22"/></svg>consulta<span>Medicina familiar</span></a><span class="demo">Demostración académica</span></header>
+  <main id="main">
+    <div class="heading"><div><h1>Tu agenda, en orden.</h1><p>Reserva y gestiona consultas de medicina familiar.</p></div><div class="zone">Quito · UTC−05:00<br><span>Horario local de todas las citas</span></div></div>
+    <nav class="tabs" aria-label="Secciones"><button :aria-current="tab==='agenda' ? 'page' : null" @click="tab='agenda'">Agenda de citas</button><button :aria-current="tab==='reglas' ? 'page' : null" @click="tab='reglas'">Reglas de atención</button></nav>
+    <div class="notice" x-cloak x-show="message" role="status"><span x-text="message"></span><button class="text-button" @click="message=''" aria-label="Cerrar aviso">Cerrar</button></div>
+    <div class="notice error" x-cloak x-show="error" role="alert"><span x-text="error"></span><button class="text-button" @click="error=''" aria-label="Cerrar error">Cerrar</button></div>
+    <section x-show="tab==='agenda'" class="workspace" aria-label="Reservas">
+      <aside class="booking"><h2>Nueva cita</h2><p class="intro">Cada consulta dura 30 minutos.</p>
+        <form @submit.prevent="book()">
+          <label for="patient">Nombre del paciente</label><input id="patient" x-model="form.patient" autocomplete="name" minlength="2" maxlength="100" required placeholder="Nombre y apellido">
+          <div class="form-pair"><div><label for="age">Edad</label><input id="age" type="number" x-model.number="form.age" min="0" max="120" step="1" required placeholder="Años" @input="chooseDoctor()"></div><div><label for="type">Tipo de consulta</label><select id="type" x-model="form.doctor" required><option value="">Selecciona</option><option value="pediatrica">Pediátrica</option><option value="adulta">Adulta</option></select></div></div>
+          <p class="hint" x-text="form.doctor==='pediatrica' ? 'Dr. Mateo Ruiz · menores de 18 años' : form.doctor==='adulta' ? 'Dra. Sofía Torres · desde los 18 años' : 'El tipo se sugiere al ingresar la edad.'"></p>
+          <label for="date">Fecha de atención</label><input id="date" type="date" x-model="form.date" :min="today" required>
+          <label for="time">Hora de inicio</label><select id="time" x-model="form.time" required><option value="">Selecciona un horario</option><template x-for="slot in slots" :key="slot"><option :value="slot" x-text="slot"></option></template></select>
+          <p class="hint">Lunes a viernes · 08:00–12:00 y 13:00–17:00.</p>
+          <button class="primary submit" type="submit" :disabled="saving || loading" x-text="saving ? 'Reservando…' : 'Reservar cita'"></button>
+        </form>
+        <div class="booking-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 7v5c0 5 9 9 9 9s9-4 9-9V7l-9-4Z"/><path d="m8 12 3 3 5-6"/></svg><p>Tu horario queda reservado al recibir la confirmación. Las citas canceladas liberan el espacio.</p></div>
+      </aside>
+      <section class="schedule" aria-labelledby="schedule-title">
+        <div class="schedule-head"><div><h2 id="schedule-title" tabindex="-1">Citas registradas</h2><p x-text="countLabel()"></p></div><button class="secondary" @click="refresh()" :disabled="loading || saving" x-text="loading ? 'Actualizando…' : 'Actualizar'"></button></div>
+        <div class="filters"><label class="search-label" for="search">Buscar paciente<input id="search" type="search" x-model="search" placeholder="Buscar por nombre"></label><label for="filter">Estado<select id="filter" x-model="filter"><option value="todas">Todas las citas</option><option value="confirmada">Confirmadas</option><option value="cancelada">Canceladas</option></select></label></div>
+        <div class="loading" x-show="loading" aria-live="polite">Cargando la agenda…</div>
+        <div class="empty" x-cloak x-show="!loading && filtered().length===0"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="14" width="44" height="40" rx="5"/><path d="M20 9v12M44 9v12M10 28h44M24 39h16M24 46h9"/></svg><h3 x-text="appointments.length ? 'No hay coincidencias' : 'Un espacio para cuidar tu salud.'"></h3><p x-text="appointments.length ? 'Prueba otro nombre o cambia el filtro de estado.' : 'Completa el formulario para reservar la primera cita. Aquí podrás consultar su estado y cancelarla.'"></p></div>
+        <div class="appointment-list" x-cloak x-show="!loading">
+          <template x-for="item in filtered()" :key="item.id"><article class="appointment"><div class="appointment-main"><div class="date-block"><strong x-text="day(item.start)"></strong><span x-text="month(item.start)"></span></div><div class="appointment-info"><h3 x-text="item.patient"></h3><p><span x-text="item.age + ' años'"></span> · <span x-text="doctorName(item.doctor)"></span></p><p class="time" x-text="dateLabel(item.start) + ' · ' + time(item.start) + '–' + time(item.end)"></p></div><div class="appointment-actions"><span class="badge" :class="item.status" x-text="item.status==='confirmada' ? 'Confirmada' : 'Cancelada'"></span><button class="text-button" x-show="item.status==='confirmada' && item.start>Date.now()" @click="beginCancel(item)" :id="'cancel-trigger-'+item.id" :aria-expanded="cancelling===item.id" :aria-controls="'cancel-panel-'+item.id" :disabled="saving || loading">Cancelar cita</button><span class="fee" x-show="item.status==='cancelada'" x-text="item.fee ? 'Cargo: ' + money(item.fee) : 'Sin cargo'"></span><span class="hint" x-show="item.status==='confirmada' && item.start<=Date.now()">Cita iniciada</span></div></div>
+            <div class="cancel-panel" :id="'cancel-panel-'+item.id" x-show="cancelling===item.id"><h4>Cancelar la cita de <span x-text="item.patient"></span></h4><label class="check"><input type="checkbox" x-model="emergency">Es una emergencia</label><p x-text="estimatedFee(item) ? 'Faltan menos de 24 horas. Se aplicará un cargo de ' + money(1000) + '.' : 'Esta cancelación no tendrá cargo.'"></p><p class="hint">La confirmación usa la hora del servidor. El cargo se registra; esta demostración no realiza cobros.</p><div class="cancel-buttons"><button class="secondary" @click="closeCancel(item.id)" :disabled="saving">Mantener cita</button><button class="primary" @click="cancel(item)" :disabled="saving" x-text="saving ? 'Cancelando…' : 'Confirmar cancelación'"></button></div></div>
+          </article></template>
+        </div>
+      </section>
+    </section>
+    <section class="rules" x-cloak x-show="tab==='reglas'" aria-labelledby="rules-title"><h2 id="rules-title">Reglas claras, antes de reservar.</h2><p>Valores definidos para este ejercicio académico. El documento de la actividad describe las reglas, pero no fija sus parámetros.</p><dl><div><dt>Atención según la edad</dt><dd>De 0 a 17 años: consulta pediátrica. Desde los 18 hasta los 120 años: consulta adulta. La validación también se realiza en el servidor.</dd></div><div><dt>Horario de atención</dt><dd>Lunes a viernes, de 08:00 a 12:00 y de 13:00 a 17:00, en hora de Quito. Consultas de 30 minutos; último inicio a las 16:30.</dd></div><div><dt>Sin reservas simultáneas</dt><dd>Un profesional no puede atender dos citas que se superponen. Dos profesionales diferentes sí pueden atender a la misma hora.</dd></div><div><dt>Cancelaciones y excepciones</dt><dd>Menos de 24 horas antes, sin emergencia: USD 10. Con 24 horas exactas o más: sin cargo. Una emergencia exime el cargo. No se cancelan citas iniciadas.</dd></div></dl><p class="rules-foot">Los nombres de los profesionales son ficticios. Utiliza datos de prueba.</p></section>
+  </main><footer><span>Consulta · Proyecto de caja blanca</span><span>Node.js · Express · SQLite · Alpine.js</span></footer>
+  <noscript><p class="notice error">Activa JavaScript para consultar y gestionar la agenda.</p></noscript>
+</body></html>

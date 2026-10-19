@@ -1,0 +1,139 @@
+{
+  "convention": "Decisiones + operadores de cortocircuito + catch + 1; funciones anidadas se miden por separado. SQL y frontend fuera de alcance.",
+  "max": 9,
+  "functions": [
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 4,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 8,
+      "predicates": 4,
+      "complexity": 5
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 13,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 14,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 15,
+      "predicates": 2,
+      "complexity": 3
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 30,
+      "predicates": 2,
+      "complexity": 3
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 40,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "app.cjs",
+      "function": "callback",
+      "line": 41,
+      "predicates": 2,
+      "complexity": 3
+    },
+    {
+      "file": "app.cjs",
+      "function": "createApp",
+      "line": 4,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "db.cjs",
+      "function": "openDb",
+      "line": 2,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "penalty.cjs",
+      "function": "penalty",
+      "line": 2,
+      "predicates": 2,
+      "complexity": 3
+    },
+    {
+      "file": "rules.cjs",
+      "function": "callback",
+      "line": 7,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "rules.cjs",
+      "function": "checkPatient",
+      "line": 9,
+      "predicates": 8,
+      "complexity": 9
+    },
+    {
+      "file": "rules.cjs",
+      "function": "parseStart",
+      "line": 21,
+      "predicates": 4,
+      "complexity": 5
+    },
+    {
+      "file": "rules.cjs",
+      "function": "checkSchedule",
+      "line": 29,
+      "predicates": 7,
+      "complexity": 8
+    },
+    {
+      "file": "rules.cjs",
+      "function": "cancellationFee",
+      "line": 41,
+      "predicates": 2,
+      "complexity": 3
+    },
+    {
+      "file": "server.cjs",
+      "function": "callback",
+      "line": 8,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "server.cjs",
+      "function": "callback",
+      "line": 9,
+      "predicates": 0,
+      "complexity": 1
+    },
+    {
+      "file": "server.cjs",
+      "function": "callback",
+      "line": 9,
+      "predicates": 0,
+      "complexity": 1
+    }
+  ]
+}

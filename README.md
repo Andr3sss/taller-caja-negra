@@ -96,3 +96,15 @@ En ese escenario, el equipo habría realizado correctamente la **verificación**
 ### Resultado de la auditoría
 
 La entrega cumple todos los criterios técnicos verificables. Antes de enviar el enlace al profesor, el equipo debe confirmar únicamente que todos sus integrantes participaron y observaron las actividades.
+
+
+## Auditoría de IA con McCabe y cobertura
+
+La entrega de citas médicas se encuentra en [auditoria-ia-mccabe/](auditoria-ia-mccabe/). Incluye la aplicación Node.js/Express, SQLite y Alpine.js, el informe, las pruebas y las evidencias de control de calidad.
+
+- [Instrucciones de instalación y ejecución](auditoria-ia-mccabe/README.md)
+- [Informe de auditoría en PDF](auditoria-ia-mccabe/Informe_Auditoria_McCabe.pdf)
+- [Informe editable](auditoria-ia-mccabe/docs/INFORME.md)
+- [Evidencias de pruebas y cobertura](auditoria-ia-mccabe/evidence/)
+
+Resultados locales: 82 pruebas aprobadas y 5 mutaciones detectadas. La revisión visual en navegador está pendiente y su alcance está documentado.

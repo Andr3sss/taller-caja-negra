@@ -1,0 +1,43 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> citas-qa@1.0.0 test:mutations
+> node scripts/mutations.cjs
+
+{
+  "scope": "Cinco mutaciones manuales no equivalentes sobre penalty.cjs; no es análisis exhaustivo.",
+  "baselinePassed": true,
+  "total": 5,
+  "killed": 5,
+  "results": [
+    {
+      "id": "M1",
+      "description": "AND reemplazado por OR",
+      "strictDetected": true,
+      "naiveSurvived": true
+    },
+    {
+      "id": "M2",
+      "description": "Exención de emergencia invertida",
+      "strictDetected": true,
+      "naiveSurvived": true
+    },
+    {
+      "id": "M3",
+      "description": "Monto de penalización incorrecto",
+      "strictDetected": true,
+      "naiveSurvived": true
+    },
+    {
+      "id": "M4",
+      "description": "Exención con cargo indebido",
+      "strictDetected": true,
+      "naiveSurvived": true
+    },
+    {
+      "id": "M5",
+      "description": "Condición tardía negada",
+      "strictDetected": true,
+      "naiveSurvived": true
+    }
+  ]
+}

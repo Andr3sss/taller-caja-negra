@@ -1,0 +1,24 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> citas-qa@1.0.0 test:coverage
+> jest --runInBand --coverage
+
+PASS tests/api.test.cjs
+PASS tests/frontend.test.cjs
+PASS tests/rules.test.cjs
+PASS tests/penalty.test.cjs
+-------------|---------|----------|---------|---------|-------------------
+File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------|---------|----------|---------|---------|-------------------
+All files    |     100 |      100 |   88.88 |     100 |                   
+ app.cjs     |     100 |      100 |      50 |     100 |                   
+ db.cjs      |     100 |      100 |     100 |     100 |                   
+ penalty.cjs |     100 |      100 |     100 |     100 |                   
+ rules.cjs   |     100 |      100 |     100 |     100 |                   
+-------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 4 passed, 4 total
+Tests:       82 passed, 82 total
+Snapshots:   0 total
+Time:        1.151 s, estimated 2 s
+Ran all test suites.

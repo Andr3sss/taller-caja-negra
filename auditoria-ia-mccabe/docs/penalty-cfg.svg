@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="490" height="410" preserveAspectRatio="xMinYMin meet" viewBox="0 0 490 410" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="490" height="410"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-410)" style="clip-path: url(#clip)">
+		<g transform="">
+			<path d="M 245,364 L 245,343 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="245 343, 242 351, 248 351" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<path d="M 245,287 L 245,253 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="245 253, 242 261, 248 261" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<text x="254" y="268" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,536) scale(1,-1)">T</text>
+			<path d="M 180,315 L 90,315 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 90,315 L 90,141 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="90 141, 87 149, 93 149" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<text x="127" y="325" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,650) scale(1,-1)">F</text>
+			<path d="M 165,225 L 150,225 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 150,225 L 150,125 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 150,125 L 140,125 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="140 125, 148 128, 148 122" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<text x="156" y="182" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,364) scale(1,-1)">F</text>
+			<path d="M 325,225 L 350,225 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 350,225 L 350,141 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="350 141, 347 149, 353 149" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<text x="361" y="182" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,364) scale(1,-1)">T</text>
+			<path d="M 90,109 L 90,70 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 90,70 L 245,70 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 245,70 L 245,46 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="245 46, 242 54, 248 54" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<path d="M 350,109 L 350,70 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 350,70 L 245,70 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<path d="M 245,70 L 245,46 Z" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="245 46, 242 54, 248 54" style="stroke: rgb(32%,40%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(32%,40%,47%); fill-rule: evenodd;"/>
+			<rect x="193.0" y="364" width="104.0" height="32" rx="6" ry="0" style="stroke: rgb(6%,15%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(6%,15%,25%); fill-rule: evenodd;"/>
+			<text x="216.798095703125" y="377" style="font-family: Body; font-size: 9px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,754) scale(1,-1)">N1 · Entrada</text>
+			<polygon points="245 343, 310 315, 245 287, 180 315" style="stroke: rgb(6%,15%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,96%,98%); fill-rule: evenodd;"/>
+			<text x="223.55029296875" y="312" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,624) scale(1,-1)">N2 · late?</text>
+			<polygon points="245 253, 325 225, 245 197, 165 225" style="stroke: rgb(6%,15%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,96%,98%); fill-rule: evenodd;"/>
+			<text x="204.902099609375" y="222" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,444) scale(1,-1)">N3 · !emergency?</text>
+			<rect x="40.0" y="109" width="100.0" height="32" rx="6" ry="0" style="stroke: rgb(6%,15%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,96%,98%); fill-rule: evenodd;"/>
+			<text x="61.248779296875" y="122" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,244) scale(1,-1)">N5 · return 0</text>
+			<rect x="285.0" y="109" width="130.0" height="32" rx="6" ry="0" style="stroke: rgb(6%,15%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,96%,98%); fill-rule: evenodd;"/>
+			<text x="312.65966796875" y="122" style="font-family: Body; font-size: 9px;fill: rgb(9%,20%,30%); stroke:none;" transform="translate(0,244) scale(1,-1)">N4 · return 1000</text>
+			<rect x="193.0" y="14" width="104.0" height="32" rx="6" ry="0" style="stroke: rgb(6%,15%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(6%,15%,25%); fill-rule: evenodd;"/>
+			<text x="220.7509765625" y="27" style="font-family: Body; font-size: 9px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,54) scale(1,-1)">N6 · Salida</text>
+		</g>
+	</g>
+</svg>

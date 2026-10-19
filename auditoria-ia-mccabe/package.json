@@ -1,0 +1,23 @@
+{
+  "name": "citas-qa", "version": "1.0.0", "private": true,
+  "description": "Sistema académico de citas y auditoría de caja blanca",
+  "engines": {"node": ">=24"},
+  "scripts": {
+    "start": "node src/server.cjs",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage",
+    "test:naive": "jest --runInBand --config jest.naive.cjs --coverage",
+    "test:mutations": "node scripts/mutations.cjs",
+    "audit:complexity": "node scripts/complexity.cjs"
+  },
+  "dependencies": {"alpinejs": "3.15.8", "express": "5.1.0"},
+  "devDependencies": {"jest": "30.2.0", "supertest": "7.1.4", "acorn": "8.15.0", "acorn-walk": "8.3.4"},
+  "jest": {
+    "testMatch": ["**/tests/**/*.test.cjs"],
+    "testPathIgnorePatterns": ["/node_modules/", "naive.test.cjs"],
+    "coverageProvider": "v8", "collectCoverageFrom": ["src/*.cjs", "!src/server.cjs"],
+    "coverageReporters": ["text", "html", "json-summary", "json"],
+    "coverageDirectory": "evidence/coverage",
+    "coverageThreshold": {"./src/penalty.cjs": {"branches": 100, "functions": 100, "lines": 100, "statements": 100}}
+  }
+}

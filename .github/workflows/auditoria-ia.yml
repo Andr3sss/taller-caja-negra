@@ -1,0 +1,48 @@
+name: Auditoría IA - McCabe y cobertura
+
+on:
+  push:
+    paths:
+      - 'auditoria-ia-mccabe/**'
+      - '.github/workflows/auditoria-ia.yml'
+  pull_request:
+    paths:
+      - 'auditoria-ia-mccabe/**'
+      - '.github/workflows/auditoria-ia.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  auditoria:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: auditoria-ia-mccabe
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+      - name: Configurar Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: auditoria-ia-mccabe/package-lock.json
+      - name: Instalar dependencias reproducibles
+        run: npm ci --no-audit --no-fund
+      - name: Pruebas estrictas y cobertura
+        run: npm run test:coverage
+      - name: Ejemplo de cobertura sin oráculos
+        run: npm run test:naive
+      - name: Detectar las mutaciones
+        run: npm run test:mutations
+      - name: Verificar complejidad
+        run: npm run audit:complexity
+      - name: Conservar evidencias de la ejecución
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-auditoria-ia
+          path: auditoria-ia-mccabe/evidence/
+          retention-days: 14

@@ -1,0 +1,19 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> citas-qa@1.0.0 test:naive
+> jest --runInBand --config jest.naive.cjs --coverage
+
+PASS tests/naive.test.cjs
+  ✓ Test zombi: ejecuta todas las sentencias, no comprueba resultados (1 ms)
+
+-------------|---------|----------|---------|---------|-------------------
+File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------|---------|----------|---------|---------|-------------------
+All files    |     100 |      100 |     100 |     100 |                   
+ penalty.cjs |     100 |      100 |     100 |     100 |                   
+-------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.263 s
+Ran all test suites.
